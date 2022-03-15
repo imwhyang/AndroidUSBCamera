@@ -2,11 +2,8 @@ package com.jiangdg.usbcamera.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -43,12 +39,8 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -417,44 +409,46 @@ public class PiczipActivity extends AppCompatActivity implements View.OnClickLis
     protected void onDestroy() {
         super.onDestroy();
     }
-}
 
-class CustTextWatcher implements TextWatcher {
-    private EditText edit;
-    private int point = 2;
 
-    public CustTextWatcher(EditText edit, int point) {
-        this.edit = edit;
-        this.point = point;
-    }
+    class CustTextWatcher implements TextWatcher {
+        private EditText edit;
+        private int point = 2;
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        public CustTextWatcher(EditText edit, int point) {
+            this.edit = edit;
+            this.point = point;
+        }
 
-    }
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-    @Override
-    public void onTextChanged(CharSequence content, int start, int before, int count) {
-        try {
-            if (content != null && !content.toString().isEmpty()) {
-                String number = content.toString();
-                Log.e("onTextChanged", number);
-                if (number.contains(".")) {
-                    if (number.length() - number.indexOf(".") - 1 > point) {
-                        edit.setTextKeepState(number.substring(0, number.indexOf(".") + point + 1));
+        }
+
+        @Override
+        public void onTextChanged(CharSequence content, int start, int before, int count) {
+            try {
+                if (content != null && !content.toString().isEmpty()) {
+                    String number = content.toString();
+                    Log.e("onTextChanged", number);
+                    if (number.contains(".")) {
+                        if (number.length() - number.indexOf(".") - 1 > point) {
+                            edit.setTextKeepState(number.substring(0, number.indexOf(".") + point + 1));
+                        }
                     }
                 }
-            }
 
-        } catch (Exception e) {
-            edit.setTextKeepState("0");
-            e.printStackTrace();
+            } catch (Exception e) {
+                edit.setTextKeepState("0");
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable content) {
+
         }
     }
-
-    @Override
-    public void afterTextChanged(Editable content) {
-
-    }
 }
+
 
