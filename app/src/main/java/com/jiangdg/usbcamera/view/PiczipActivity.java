@@ -1,7 +1,9 @@
 package com.jiangdg.usbcamera.view;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,7 +21,10 @@ import androidx.appcompat.widget.Toolbar;
 import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ObjectUtils;
+import com.blankj.utilcode.util.ThreadUtils;
+import com.blankj.utilcode.util.TimeUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.util.ZipUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.JsonArray;
@@ -97,6 +102,12 @@ public class PiczipActivity extends AppCompatActivity implements View.OnClickLis
     ImageView btnVadioRm;
     @BindView(R.id.btn_list)
     TextView btnList;
+    @BindView(R.id.edit_house_num)
+    EditText editHouseNum;
+    @BindView(R.id.edit_lair_num)
+    EditText editLairNum;
+    @BindView(R.id.btn_zip_video)
+    Button btnZipVideo;
 
     private final int PICTYPE_BUST = 1;
     private final int PICTYPE_WIDTH = 2;
@@ -134,6 +145,7 @@ public class PiczipActivity extends AppCompatActivity implements View.OnClickLis
         btnChestBust.setOnClickListener(this);
         btnBodyLength.setOnClickListener(this);
         btnZip.setOnClickListener(this);
+        btnZipVideo.setOnClickListener(this);
         btnVadio.setOnClickListener(this);
         btnVadioRm.setOnClickListener(this);
 
@@ -185,10 +197,16 @@ public class PiczipActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btn_zip:
                 zipValue();
                 break;
+            case R.id.btn_zip_video:
+                zipVideo();
+                break;
+
         }
     }
 
     private void takeVadio() {
+
+
         if (parentPath.isEmpty())
             parentPath = UVCCameraHelper.ROOT_PATH + MyApplication.DIRECTORY_NAME + "/videos/" + System.currentTimeMillis();
         Intent intent = new Intent(this, USBCameraActivity.class);
@@ -278,6 +296,46 @@ public class PiczipActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    private void zipVideo() {
+        if (editHouseNum.getText().toString().isEmpty() || editLairNum.getText().toString().isEmpty()) {
+            ToastUtils.showShort("请完善(舍、圈)信息");
+            return;
+        }
+        if (vadioPath.isEmpty()) {
+            ToastUtils.showShort("视频已不存在");
+            return;
+        }
+        AlertDialog alerIng = new AlertDialog.Builder(this)
+                .setTitle("压缩")
+                .setMessage("正在压缩......")
+                .setInverseBackgroundForced(true)
+                .show();
+        String time = TimeUtils.millis2String(System.currentTimeMillis(), "yyMMddHHmmss");
+        String fileName = String.format(
+                getString(R.string.fmt_video_zip_name),
+                editHouseNum.getText().toString(),
+                editLairNum.getText().toString(),
+                time
+        );
+
+        ThreadUtils.executeByFixed(1, new ThreadUtils.SimpleTask<Boolean>() {
+            @Override
+            public Boolean doInBackground() throws Throwable {
+                return ZipUtils.zipFile(vadioPath, UVCCameraHelper.ROOT_PATH + MyApplication.DIRECTORY_NAME + "/videos/" + fileName);
+            }
+
+            @Override
+            public void onSuccess(Boolean result) {
+                if (result){
+                    alerIng.setMessage("压缩成功-地址:"+UVCCameraHelper.ROOT_PATH + MyApplication.DIRECTORY_NAME + "/videos/" + fileName);
+                }else{
+                    alerIng.setMessage("压缩失败");
+                }
+            }
+        });
+    }
+
+
     /**
      * 打包资料
      */
@@ -342,6 +400,8 @@ public class PiczipActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         }).start();
+
+
     }
 
 
@@ -376,12 +436,7 @@ public class PiczipActivity extends AppCompatActivity implements View.OnClickLis
             }
 
         } catch (IOException e) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    ToastUtils.showLong(e.getMessage());
-                }
-            });
+            ToastUtils.showLong(e.getMessage());
             FileUtils.delete(destFile);
             e.printStackTrace();
         }

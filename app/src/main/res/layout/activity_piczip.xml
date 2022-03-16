@@ -28,7 +28,7 @@
                 android:paddingRight="@dimen/dp_10"
                 android:text="@string/title_take_picture"
                 android:textColor="@color/white"
-                android:textSize="@dimen/dp_22" />
+                android:textSize="@dimen/dp_20" />
 
             <TextView
                 android:id="@+id/btn_list"
@@ -41,8 +41,7 @@
                 android:paddingRight="@dimen/dp_10"
                 android:text="列表"
                 android:textColor="@color/white"
-                android:textSize="@dimen/dp_22"
-                android:textStyle="bold" />
+                android:textSize="@dimen/dp_16" />
 
         </RelativeLayout>
 
@@ -55,23 +54,73 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:padding="@dimen/dp_5"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/text_label"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_22"
-                android:layout_weight="1"
-                android:padding="@dimen/dp_10"
-                android:text="@string/label_vadio" />
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    style="@style/text_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/label_vadio" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_house"/>
+
+                <EditText
+                    android:id="@+id/edit_house_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_22"
+                    android:paddingRight="@dimen/dp_22"
+                    android:hint="0"
+                    android:inputType="numberDecimal"
+                    android:maxLength="16" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_lair"/>
+                <EditText
+                    android:id="@+id/edit_lair_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_22"
+                    android:paddingRight="@dimen/dp_22"
+                    android:hint="0"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10" />
+
+                <Button
+                    android:id="@+id/btn_zip_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_36"
+                    android:text="@string/btn_zip_video"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_10">
+               >
 
                 <ImageView
                     android:id="@+id/iv_vadio"
@@ -107,7 +156,11 @@
                     android:layout_height="@dimen/dp_40"
                     android:layout_alignTop="@id/btn_vadio"
                     android:layout_alignRight="@id/btn_vadio"
-                    android:layout_margin="@dimen/dp_5"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="@dimen/dp_5"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginBottom="@dimen/dp_5"
                     android:background="@mipmap/ic_close" />
             </RelativeLayout>
 
@@ -116,7 +169,11 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_10">
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+               android:layout_marginTop="@dimen/dp_5"
+
+                >
 
                 <TextView
                     style="@style/text_label"
@@ -146,7 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_10">
+                >
 
                 <ImageView
                     android:id="@+id/iv_chest_bust"
@@ -190,8 +247,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp_5"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_10">
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                >
 
                 <TextView
                     style="@style/text_label"
@@ -221,7 +281,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_10">
+                >
 
                 <ImageView
                     android:id="@+id/iv_chest_width"
@@ -265,7 +325,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_10">
+                android:layout_marginTop="@dimen/dp_5"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                >
 
                 <TextView
                     style="@style/text_label"
@@ -295,7 +358,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_10">
+                 >
 
                 <ImageView
                     android:id="@+id/iv_body_length"
@@ -337,7 +400,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
                 android:orientation="horizontal">
+
+
 
                 <Button
                     android:id="@+id/btn_zip"

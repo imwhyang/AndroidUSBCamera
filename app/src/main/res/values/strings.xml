@@ -11,6 +11,9 @@
     <string name="label_body_length">体斜长:</string>
     <string name="label_cm">cm</string>
 
+    <string name="label_house">舍：</string>
+    <string name="label_lair">圈：</string>
+
     <string name="hint_chest_bust">请输入胸围值</string>
     <string name="hint_chest_width">请输入胸宽值</string>
     <string name="hint_body_length">请输入体斜长值</string>
@@ -19,8 +22,10 @@
 
     <string name="btn_zip">开始打包文件</string>
     <string name="btn_clean">清除</string>
+    <string name="btn_zip_video">打包 Video</string>
 
     <string name="fmt_zip_name">-%s-%s-%s.zip</string>
+    <string name="fmt_video_zip_name">%s舍-%s圈-%s.zip</string>
 
 
 

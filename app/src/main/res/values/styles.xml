@@ -22,7 +22,7 @@
     </style>
     <style name="text_label" >
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/dp_22</item>
+        <item name="android:textSize">@dimen/dp_18</item>
     </style>
     <!--    圆形进度条-->
     <declare-styleable name="CircularProgressView">
