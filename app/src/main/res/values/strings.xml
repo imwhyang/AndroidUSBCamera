@@ -17,6 +17,7 @@
     <string name="hint_chest_bust">请输入胸围值</string>
     <string name="hint_chest_width">请输入胸宽值</string>
     <string name="hint_body_length">请输入体斜长值</string>
+    <string name="hint_body_weight">请输入体重</string>
 
     <string name="tip_example">示例图片</string>
 
