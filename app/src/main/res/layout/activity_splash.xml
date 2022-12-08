@@ -8,33 +8,10 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Welcome to use!"
+        android:text="@string/app_name"
         android:textSize="28sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:textSize="14sp"
-        android:textStyle="italic"
-        android:text="Author: whosmyqueen" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:layout_marginTop="5dp"
-        android:textStyle="italic"
-        android:textSize="14sp"
-        android:text="Email:644049260@qq.com" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="last modify 2021.09"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:gravity="bottom|center_horizontal"
-        android:paddingBottom="20dp"
-        android:layout_weight="1"/>
+
 </LinearLayout>

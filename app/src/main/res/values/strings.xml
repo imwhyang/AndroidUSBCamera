@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">USB摄像头采集</string>
+    <string name="app_name">死猪采集工具</string>
     <string name="empty_no_data">没有数据</string>
 
     <string name="title_take_picture">拍摄影像</string>
